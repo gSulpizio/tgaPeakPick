@@ -4,7 +4,7 @@ import { time } from 'console';
  * Returns a very important number
  * @return {number}
  */
-export default function Parser(fileName) {
+export default function parser(fileName) {
   const Papa = require('papaparse'); //to use papaparse
 
   const fs = require('fs');
@@ -22,5 +22,6 @@ export default function Parser(fileName) {
   let timeCollect = data.map((a) => a.Time);
   let weightCollect = data.map((a) => a['Unsubtracted Weight']);
   let temperatureCollect = data.map((a) => a['Sample Temperature']);
+
   return [timeCollect, weightCollect, temperatureCollect];
 }

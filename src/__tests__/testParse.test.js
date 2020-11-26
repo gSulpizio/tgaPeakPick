@@ -1,9 +1,9 @@
-import Parser from '../Parser';
+import parser from '../parser';
 
-describe('test testParse', () => {
+describe('test Parse', () => {
   it('should return parsed numbers', () => {
     expect(
-      Parser('/home/Giustino/git/Cheminfo/tgaPeakPick/src/testFileShort.csv'),
+      parser('/home/Giustino/git/Cheminfo/tgaPeakPick/src/testFileShort.csv'),
     ).toStrictEqual([
       [111, 888, 151515],
       [222, 999, 161616],
