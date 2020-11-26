@@ -7,7 +7,7 @@ export default function tracingTool(fileName) {
 
   fs.writeFileSync(
     '/home/Giustino/git/Cheminfo/chartTracer/data.json', //this is limited to this computer
-    xy,
+    JSON.stringify(xy),
     (err) => {
       if (err) console.log(err);
       else {
