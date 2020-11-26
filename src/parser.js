@@ -23,5 +23,5 @@ export default function parser(fileName) {
   let weightCollect = data.map((a) => a['Unsubtracted Weight']);
   let temperatureCollect = data.map((a) => a['Sample Temperature']);
 
-  return [timeCollect, weightCollect, temperatureCollect];
+  return [timeCollect, weightCollect, temperatureCollect]; //array of arrays to avoid using objects for a fast processing
 }
