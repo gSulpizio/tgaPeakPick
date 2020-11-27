@@ -1,27 +1,23 @@
-import { time } from 'console';
-
 /**
  * Returns a very important number
  * @return {number}
  */
-export default function parser(fileName) {
+export default function parser(content) {
   const Papa = require('papaparse'); //to use papaparse
-
-  const fs = require('fs');
-  const file = fs.readFileSync(fileName, 'utf8');
 
   let data = {};
 
-  Papa.parse(file, {
+  Papa.parse(content, {
     header: true,
     dynamicTyping: true,
     complete: function (results) {
       data = results.data;
     },
   });
-  let timeCollect = data.map((a) => a.Time);
-  let weightCollect = data.map((a) => a['Unsubtracted Weight']);
-  let temperatureCollect = data.map((a) => a['Sample Temperature']);
 
-  return [timeCollect, weightCollect, temperatureCollect]; //array of arrays to avoid using objects for a fast processing
+  let time = data.map((a) => a.Time);
+  let weight = data.map((a) => a['Unsubtracted Weight']);
+  let temperature = data.map((a) => a['Sample Temperature']);
+
+  return { time, weight, temperature }; //array of arrays to avoid using objects for a fast processing
 }
