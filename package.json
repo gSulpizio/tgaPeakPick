@@ -1,6 +1,6 @@
 {
   "name": "tgaPeakPick",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Peak picking tool for thermogravimetric analysis",
   "main": "lib/index.js",
   "module": "src/index.js",
