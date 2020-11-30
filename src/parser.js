@@ -1,6 +1,6 @@
 /**
- * Returns a very important number
- * @return {number}
+ *
+ * @param {*} content
  */
 export default function parser(content) {
   const Papa = require('papaparse'); //to use papaparse

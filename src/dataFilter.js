@@ -1,17 +1,19 @@
-/**
- *
- * @param {Array} [x] original x-data
- * @param {Array} [y] original y-data
- * @returns {Array} derivative y-data
- */
-export default function firstDerivative(x, y) {
-  var noiseLevel = 0.1;
-  var data = new Array(20);
-  for (var i = 0; i < data.length; i++)
-    data[i] =
-      Math.sin((i * Math.PI * 2) / data.length) +
-      (Math.random() - 0.5) * noiseLevel;
-  var ans = SG(y, x); //, options);
-  console.log(ans);
-  return ans;
+export default function dataFilter(data) {
+  let newData = {
+    temperature: [data.temperature[0]],
+    time: [data.time[0]],
+    weight: [data.weight[0]],
+  };
+  let counter = 0;
+
+  for (let i = 1; i < data.temperature.length; i++) {
+    if (data.temperature[i] > newData.temperature[counter]) {
+      newData.temperature.push(data.temperature[i]);
+      newData.time.push(data.time[i]);
+      newData.weight.push(data.weight[i]);
+      counter++;
+    }
+  }
+
+  return newData;
 }
