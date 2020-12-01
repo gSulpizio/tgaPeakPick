@@ -1,7 +1,7 @@
 import SG from 'ml-savitzky-golay-generalized';
 
 /**
- *
+ *deprecated: tool to compute first derivative
  * @param {Array} [x] original x-data
  * @param {Array} [y] original y-data
  * @returns {Array} derivative y-data

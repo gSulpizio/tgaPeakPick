@@ -1,6 +1,6 @@
 /**
- *
- * @param {*} content
+ *Tool to parse a csv file
+ * @param {File} [content] CSV file containing the raw data
  */
 export default function parser(content) {
   const Papa = require('papaparse'); //to use papaparse

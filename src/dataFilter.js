@@ -1,3 +1,8 @@
+/**
+ * Tool to eliminate all the weights that are not inferior to the previous data point.
+ * @param {object} [data] object with the raw data containing temperature, time and weight
+ * @returns {object} object containing the filtered data
+ */
 export default function dataFilter(data) {
   let newData = {
     temperature: [data.temperature[0]],
