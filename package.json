@@ -9,6 +9,12 @@
     "src"
   ],
   "scripts": {
+    "@commentScripts": [
+      "dev: To start tracingTool, dev2: to start tracingToolDerivative",
+      "to use those scripts, run: 'npm run dev' in the terminal"
+    ],
+    "dev": "nodemon --exec babel-node example/tracingTool.js",
+    "dev2": "nodemon --exec babel-node example/tracingToolDerivative.js",
     "eslint": "eslint src",
     "eslint-fix": "npm run eslint -- --fix",
     "prepublishOnly": "rollup -c",
@@ -38,7 +44,10 @@
     "trailingComma": "all"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/node": "^7.12.6",
     "@babel/plugin-transform-modules-commonjs": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
     "@types/jest": "^26.0.15",
     "eslint": "^7.14.0",
     "eslint-config-cheminfo": "^5.2.2",
@@ -49,7 +58,12 @@
     "rollup": "^2.33.3"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "ml-savitzky-golay-generalized": "^2.0.3",
     "papaparse": "^5.3.0"
+  },
+  "directories": {
+    "example": "example"
   }
 }
