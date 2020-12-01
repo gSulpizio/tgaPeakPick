@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import parser from '../src/parser.js';
-import dataFilter from '../src/dataFilter';
+import dataFilter from '../src/temperatureFilter';
 import SG from 'ml-savitzky-golay-generalized';
 import firstDerivative from '../src/firstDerivative.js';
 

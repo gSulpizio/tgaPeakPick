@@ -3,7 +3,7 @@
  * @param {object} [data] object with the raw data containing temperature, time and weight
  * @returns {object} object containing the filtered data
  */
-export default function dataFilter(data) {
+export default function temperatureFilter(data) {
   let newData = {
     temperature: [data.temperature[0]],
     time: [data.time[0]],
