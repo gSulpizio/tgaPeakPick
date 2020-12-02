@@ -30,7 +30,7 @@ describe('test firstDerivative', () => {
       ],
     };
 
-    expect(firstDerivative(data.temperature, data.weight)).toStrictEqual(
+    expect(firstDerivative(data.temperature, data.weight, 200)).toStrictEqual(
       data.temperature,
       data.weight,
     );

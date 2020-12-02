@@ -14,7 +14,7 @@
       "to use those scripts, run: 'npm run dev' in the terminal"
     ],
     "dev": "nodemon --exec babel-node example/tracingTool.js",
-    "dev2": "nodemon --exec babel-node example/tracingToolDerivative.js",
+    "dev1": "nodemon --exec babel-node example/tracingToolDerivative.js",
     "eslint": "eslint src",
     "eslint-fix": "npm run eslint -- --fix",
     "prepublishOnly": "rollup -c",
@@ -61,6 +61,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "ml-savitzky-golay-generalized": "^2.0.3",
+    "moving-averages": "^4.0.5",
     "papaparse": "^5.3.0"
   },
   "directories": {
