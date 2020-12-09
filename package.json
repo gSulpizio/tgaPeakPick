@@ -1,5 +1,5 @@
 {
-  "name": "tgaPeakPick",
+  "name": "tgapeakpick",
   "version": "0.0.4",
   "description": "Peak picking tool for thermogravimetric analysis",
   "main": "lib/index.js",
@@ -9,10 +9,6 @@
     "src"
   ],
   "scripts": {
-    "@commentScripts": [
-      "dev: To start tracingTool, dev2: to start tracingToolDerivative",
-      "to use those scripts, run: 'npm run dev' in the terminal"
-    ],
     "dev": "nodemon --exec babel-node example/tracingTool.js",
     "dev1": "nodemon --exec babel-node example/tracingToolDerivative.js",
     "eslint": "eslint src",
@@ -61,6 +57,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "ml-savitzky-golay-generalized": "^2.0.3",
+    "ml-spectra-processing": "^4.10.0",
     "moving-averages": "^4.0.5",
     "papaparse": "^5.3.0"
   },
