@@ -8,12 +8,12 @@ import { sma } from 'moving-averages';
  * @param {Array} [y] original y-data
  * @returns {Array} derivative y-data
  */
-export default function firstDerivative(x, y, r) {
+export default function firstDerivative(x, y) {
   let diffData = SG(y, x, { derivative: 1 });
   //Smoothing:
 
-  let smoothDiffData = sma(diffData, 50, 1);
-
-  smoothDiffData = Array.from(smoothDiffData, (item) => item || diffData[r]); //replaces empty items with a value
+  //let smoothDiffData = sma(diffData, 50, 1);
+  let smoothDiffData = diffData;
+  //smoothDiffData = Array.from(smoothDiffData, (item) => item || diffData[r]); //replaces empty items with a value
   return smoothDiffData;
 }
