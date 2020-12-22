@@ -1,17 +1,17 @@
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, appendFileSync, unlinkSync } from 'fs';
 import { join } from 'path';
 import parser from '../src/parser.js';
 import { xyUniqueX } from 'ml-spectra-processing';
 import dataFilter from '../src/dataFilter.js';
-import { gsd } from '../src/globalSpectralDeconvolution';
+import { gsd } from 'ml-gsd';
 import SG from 'ml-savitzky-golay-generalized';
 
 const content = readFileSync(join(__dirname, './testFile.csv'), 'utf8');
 
 let data = parser(content);
 
-let toSort = { x: data.temperature, y: data.weight };
-toSort = dataFilter(toSort, 2);
+let toSort = data;
+toSort = dataFilter(toSort);
 let filteredData = xyUniqueX(toSort, { algorithm: 'average', isSorted: false });
 //let peaks = gsd(filteredData, { derivativeThreshold: 1 });
 //console.log(peaks);
@@ -19,10 +19,5 @@ let filteredData = xyUniqueX(toSort, { algorithm: 'average', isSorted: false });
 writeFileSync(
   join(__dirname, 'data.json'),
   JSON.stringify(filteredData),
-  'utf8',
-);
-writeFileSync(
-  join(__dirname, 'dataBeforeFilter.json'),
-  JSON.stringify(toSort),
   'utf8',
 );

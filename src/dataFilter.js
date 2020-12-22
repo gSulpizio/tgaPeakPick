@@ -1,5 +1,5 @@
 /**
- * Tool to eliminate all the temperatures that have a fluctuation that is too big compared to the other data points.
+ * Tool to eliminate all the temperatures that have a fluctuation that is too big compared to the other data points, eliminates the last value.
  * @param {DataXY} [data] object with the raw data containing temperature, time and weight
  * @param {number} [tolerance=2] factor of how many times the average temperature step is accepted. If we have a spacing of 2 between every temperature a factor of 2 means that if a temperature is spaced by more than 4 it will be eliminated
  * @returns {object} object containing the filtered data

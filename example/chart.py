@@ -24,9 +24,29 @@ ax1.tick_params(axis='y', labelcolor=color)
 ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
 
 color = 'tab:blue'
-ax2.set_ylabel('sin', color=color)  # we already handled the x-label with ax1
+# we already handled the x-label with ax1
+ax2.set_ylabel('derivative', color=color)
 ax2.plot(derivativeData['x'], derivativeData['y'], color=color)
 ax2.tick_params(axis='y', labelcolor=color)
+
+
+# 2nd derivative
+
+
+with open('/home/giustinosulpizio/git/Cheminfo/tgaPeakPick/example/dataDerivative2.json', 'r') as myfile:
+    data = myfile.read()
+derivativeData2 = json.loads(data)
+
+
+ax3 = ax2.twinx()  # instantiate a second axes that shares the same x-axis
+
+color = 'tab:green'
+# we already handled the x-label with ax1
+ax3.set_ylabel('derivative2', color=color)
+ax3.plot(derivativeData2['x'], derivativeData2['y'], color=color)
+ax3.tick_params(axis='y', labelcolor=color)
+
+# end 2nd derivative
 
 fig.tight_layout()  # otherwise the right y-label is slightly clipped
 plt.show()
