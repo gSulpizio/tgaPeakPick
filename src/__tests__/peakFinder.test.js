@@ -7,16 +7,7 @@ import dataFilter from '../dataFilter';
 import SG from 'ml-savitzky-golay-generalized';
 
 describe('test peakFinder', () => {
-  it('should return 2 peaks from simulated data', () => {
-    let file = readFileSync(join(__dirname, './data/dataSim.json'), 'utf8');
-    const data = JSON.parse(file);
-
-    expect(peakFinder(data, { noiseLevel: 0 })).toStrictEqual({
-      y: [222, 333, 333, 222, 999, 161616],
-      x: [555, 666, 666, 555, 121212, 191919],
-    });
-  });
-  it.only('should return 2 peaks from simulated data', () => {
+  it('should return 4 peaks', () => {
     const content = readFileSync(
       join(__dirname, '../../example/testFile.csv'),
       'utf8',
@@ -35,8 +26,6 @@ describe('test peakFinder', () => {
       factorWidth: 4,
     });
     console.log(result);
-
-    /*
     result.forEach((peak) => {
       if (Math.abs(peak.x - 545) < 20) {
         expect(peak.width).toBeGreaterThanOrEqual(150);
@@ -49,7 +38,7 @@ describe('test peakFinder', () => {
         expect(peak.width).toBeLessThan(120);
       }
     });
-*/
+
     //delete file if exists
     let path = join(__dirname, './data/testFile.txt');
     try {

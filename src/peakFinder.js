@@ -1,5 +1,5 @@
 import { gsd, optimizePeaks } from 'ml-gsd';
-export default function (data, options = {}) {
+export default function peakFinder(data, options = {}) {
   let xy = data; //{ x: data.x, y: data.y.map((x) => -x) };
   let peaks = gsd(xy, options);
 
