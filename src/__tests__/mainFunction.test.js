@@ -13,15 +13,15 @@ describe('test mainFunction', () => {
     const data = parser(content);
     let result = mainFunction(data);
 
-    console.log(result); //showing results
+    //console.log(result); //showing results
 
     let pkList = { x: [], y: [] };
     for (let i = 0; i < result.length; i++) {
-      pkList.x.push(result[i].left.x);
-      pkList.x.push(result[i].right.x);
+      pkList.x.push(result[i].fromTo[0]);
+      pkList.x.push(result[i].fromTo[1]);
 
-      pkList.y.push(data.y[result[i].left.index]);
-      pkList.y.push(data.y[result[i].right.index]);
+      pkList.y.push(0);
+      pkList.y.push(0);
     }
 
     writeFileSync(

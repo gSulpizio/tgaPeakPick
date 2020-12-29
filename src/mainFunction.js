@@ -29,7 +29,8 @@ export default function mainFunction(data, radius = 601) {
     minMaxRatio: 0.01,
     factorWidth: 4,
   });
-  getFWHM(data, result, toAnalyze.y);
+
+  getWidth(data, result, toAnalyze.y);
   return result;
 }
 
@@ -54,4 +55,13 @@ function getFWHM(data, result, dY) {
   return 0;
 }
 
-function getWidth(data, result, dY) {}
+function getWidth(data, result, dY) {
+  let sigma;
+  getFWHM(data, result, dY);
+
+  for (let i = 0; i < result.length; i++) {
+    sigma = result[i].fwhm / (2 * Math.sqrt(2 * Math.log(2)));
+    result[i].fromTo = [-3 * sigma + result[i].x, 3 * sigma + result[i].x];
+  }
+  console.log(result);
+}

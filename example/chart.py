@@ -1,17 +1,24 @@
 # this script is just to make a chart
 import json
 import matplotlib.pyplot as plt
+import os
 
+dirname = os.path.dirname(__file__)
+fileName1 = os.path.join(dirname, 'data.json')
 
-with open('/home/giustinosulpizio/git/Cheminfo/tgaPeakPick/example/data.json', 'r') as myfile:
+with open(fileName1, 'r') as myfile:
     data = myfile.read()
 treatedData = json.loads(data)
 
-with open('/home/giustinosulpizio/git/Cheminfo/tgaPeakPick/example/dataDerivative.json', 'r') as myfile:
+fileName2 = os.path.join(dirname, 'dataDerivative.json')
+
+with open(fileName2, 'r') as myfile:
     data = myfile.read()
 derivativeData = json.loads(data)
 
-with open('/home/giustinosulpizio/git/Cheminfo/tgaPeakPick/example/peakList.json', 'r') as myfile:
+fileName3 = os.path.join(dirname, 'peakList.json')
+
+with open(fileName3, 'r') as myfile:
     data = myfile.read()
 peakList = json.loads(data)
 
@@ -36,8 +43,9 @@ ax2.tick_params(axis='y', labelcolor=color)
 
 # 2nd derivative
 
+fileName4 = os.path.join(dirname, 'dataDerivative2.json')
 
-with open('/home/giustinosulpizio/git/Cheminfo/tgaPeakPick/example/dataDerivative2.json', 'r') as myfile:
+with open(fileName4, 'r') as myfile:
     data = myfile.read()
 derivativeData2 = json.loads(data)
 
