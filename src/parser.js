@@ -15,9 +15,8 @@ export default function parser(content) {
     },
   });
 
-  let time = data.map((a) => a.Time);
-  let weight = data.map((a) => a['Unsubtracted Weight']);
-  let temperature = data.map((a) => a['Sample Temperature']);
+  let y = data.map((a) => a['Unsubtracted Weight']);
+  let x = data.map((a) => a['Sample Temperature']);
 
-  return { time, weight, temperature }; //array of arrays to avoid using objects for a fast processing
+  return { x, y };
 }
