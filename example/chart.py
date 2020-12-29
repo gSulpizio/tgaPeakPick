@@ -11,6 +11,10 @@ with open('/home/giustinosulpizio/git/Cheminfo/tgaPeakPick/example/dataDerivativ
     data = myfile.read()
 derivativeData = json.loads(data)
 
+with open('/home/giustinosulpizio/git/Cheminfo/tgaPeakPick/example/peakList.json', 'r') as myfile:
+    data = myfile.read()
+peakList = json.loads(data)
+
 x = treatedData['x']
 
 fig, ax1 = plt.subplots()
@@ -45,6 +49,14 @@ color = 'tab:green'
 ax3.set_ylabel('derivative2', color=color)
 ax3.plot(derivativeData2['x'], derivativeData2['y'], color=color)
 ax3.tick_params(axis='y', labelcolor=color)
+
+
+ax4 = ax3.twinx()
+
+color = 'tab:red'
+# we already handled the x-label with ax1
+ax4.scatter(peakList['x'], peakList['y'], color=color)
+ax4.tick_params(axis='y', labelcolor=color)
 
 # end 2nd derivative
 
