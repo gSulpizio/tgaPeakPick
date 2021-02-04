@@ -6,11 +6,15 @@
  */
 
 export default function deleteGreater(data) {
+  if (data.x.length !== data.y.length) {
+    throw new Error("deleteGreater: length of x and y don't match");
+  }
+
   let counter = 0;
   let cleanedData = { x: [], y: [] };
   cleanedData.x.push(data.x[0]);
   cleanedData.y.push(data.y[0]);
-  for (let i = 1; i < data.length; i++) {
+  for (let i = 1; i < data.x.length; i++) {
     if (cleanedData.y[counter] >= data.y[i]) {
       cleanedData.x.push(data.x[i]);
       cleanedData.y.push(data.y[i]);
