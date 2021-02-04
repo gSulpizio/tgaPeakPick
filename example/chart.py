@@ -1,24 +1,17 @@
 # this script is just to make a chart
 import json
 import matplotlib.pyplot as plt
-import os
 
-dirname = os.path.dirname(__file__)
-fileName1 = os.path.join(dirname, 'data.json')
 
-with open(fileName1, 'r') as myfile:
+with open('/home/giustinosulpizio/git/Cheminfo/tgaPeakPick/example/data.json', 'r') as myfile:
     data = myfile.read()
 treatedData = json.loads(data)
 
-fileName2 = os.path.join(dirname, 'dataDerivative.json')
-
-with open(fileName2, 'r') as myfile:
+with open('/home/giustinosulpizio/git/Cheminfo/tgaPeakPick/example/dataDerivative.json', 'r') as myfile:
     data = myfile.read()
 derivativeData = json.loads(data)
 
-fileName3 = os.path.join(dirname, 'peakList.json')
-
-with open(fileName3, 'r') as myfile:
+with open('/home/giustinosulpizio/git/Cheminfo/tgaPeakPick/example/peakList.json', 'r') as myfile:
     data = myfile.read()
 peakList = json.loads(data)
 
@@ -41,13 +34,9 @@ ax2.plot(derivativeData['x'], derivativeData['y'], color=color)
 ax2.tick_params(axis='y', labelcolor=color)
 
 
-# 2nd derivative
-
-fileName4 = os.path.join(dirname, 'dataDerivative2.json')
-
-with open(fileName4, 'r') as myfile:
+with open('/home/giustinosulpizio/git/Cheminfo/tgaPeakPick/example/dataDerivative2.json', 'r') as myfile:
     data = myfile.read()
-derivativeData2 = json.loads(data)
+data1 = json.loads(data)
 
 
 ax3 = ax2.twinx()  # instantiate a second axes that shares the same x-axis
@@ -55,7 +44,7 @@ ax3 = ax2.twinx()  # instantiate a second axes that shares the same x-axis
 color = 'tab:green'
 # we already handled the x-label with ax1
 ax3.set_ylabel('derivative2', color=color)
-ax3.plot(derivativeData2['x'], derivativeData2['y'], color=color)
+ax3.plot(data1['x'], data1['y'], color=color)
 ax3.tick_params(axis='y', labelcolor=color)
 
 

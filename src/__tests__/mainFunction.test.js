@@ -13,20 +13,20 @@ describe('test mainFunction', () => {
     const data = parser(content);
     let result = mainFunction(data);
 
-    //console.log(result); //showing results
+    console.log(result); //showing results
 
-    let pkList = { x: [], y: [] };
+    let peakList = { x: [], y: [] };
     for (let i = 0; i < result.length; i++) {
-      pkList.x.push(result[i].fromTo[0]);
-      pkList.x.push(result[i].fromTo[1]);
+      peakList.x.push(result[i].left.x);
+      peakList.x.push(result[i].right.x);
 
-      pkList.y.push(0);
-      pkList.y.push(0);
+      peakList.y.push(data.y[result[i].left.index]);
+      peakList.y.push(data.y[result[i].right.index]);
     }
 
     writeFileSync(
       join(__dirname, '../../example/peakList.json'),
-      JSON.stringify(pkList),
+      JSON.stringify(peakList),
       'utf8',
     );
   });

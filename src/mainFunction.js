@@ -11,15 +11,15 @@ export default function mainFunction(data, radius = 601) {
   if (radius2 % 2 === 0) {
     radius2 += 1;
   }
-  const mean = data.y.reduce((a, b) => a + b) / data.y.length;
-  let std = Math.sqrt(
-    data.y.map((x) => Math.pow(x - mean, 2)).reduce((a, b) => a + b) /
-      data.y.length,
-  );
-  console.log('std:', std);
+
   //const data = parser(content);
   let filteredData = dataFilter(data);
   let processedData = xyUniqueX(filteredData, { isSorted: false });
+  writeFileSync(
+    join(__dirname, '../example/data1.json'),
+    JSON.stringify(processedData),
+    'utf8',
+  );
   let dY = SG(processedData.y, processedData.x, { derivative: 1 });
   let dYSmooth = SG(dY, processedData.x, { windowSize: radius });
   let toAnalyze = { x: processedData.x, y: dYSmooth.map((x) => -x) };
@@ -29,8 +29,7 @@ export default function mainFunction(data, radius = 601) {
     minMaxRatio: 0.01,
     factorWidth: 4,
   });
-
-  getWidth(data, result, toAnalyze.y);
+  getFWHM(data, result, toAnalyze.y);
   return result;
 }
 
@@ -53,15 +52,4 @@ function getFWHM(data, result, dY) {
     result[i].fwhm = Math.abs(data.x[leftX] - data.x[rightX]);
   }
   return 0;
-}
-
-function getWidth(data, result, dY) {
-  let sigma;
-  getFWHM(data, result, dY);
-
-  for (let i = 0; i < result.length; i++) {
-    sigma = result[i].fwhm / (2 * Math.sqrt(2 * Math.log(2)));
-    result[i].fromTo = [-3 * sigma + result[i].x, 3 * sigma + result[i].x];
-  }
-  console.log(result);
 }
