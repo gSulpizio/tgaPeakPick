@@ -5,6 +5,8 @@ import parser from './parser';
 import { xyUniqueX } from 'ml-spectra-processing';
 import dataFilter from './dataFilter';
 import SG from 'ml-savitzky-golay-generalized';
+import deleteGreaterY from './deleteGreaterY';
+import deleteSmallerX from './deleteSmallerX';
 
 export default function mainFunction(data, radius = 601) {
   let radius2 = Math.floor((radius * 4) / 3);
@@ -14,7 +16,10 @@ export default function mainFunction(data, radius = 601) {
 
   //const data = parser(content);
   let filteredData = dataFilter(data);
-  let processedData = xyUniqueX(filteredData, { isSorted: false });
+
+  let processedData = deleteGreaterY(filteredData);
+  //processedData = xyUniqueX(filteredData, { isSorted: false });
+
   writeFileSync(
     join(__dirname, '../example/data1.json'),
     JSON.stringify(processedData),

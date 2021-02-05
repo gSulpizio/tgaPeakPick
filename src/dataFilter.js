@@ -8,8 +8,8 @@
 export default function dataFilter(data, tolerance = 2) {
   let newData = { x: [], y: [] };
 
-  const t1 = Math.floor(data.x.length / 3);
-  const t2 = Math.floor((2 * data.x.length) / 3);
+  const t1 = Math.floor(data.x.length / 10);
+  const t2 = Math.floor((9 * data.x.length) / 10);
   let sum = 0;
   for (let i = t1; i < t2; i++) {
     sum += Math.abs(data.x[i] - data.x[i + 1]);

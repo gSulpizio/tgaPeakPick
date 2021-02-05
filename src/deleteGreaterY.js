@@ -5,7 +5,7 @@
  *  @returns {object} object containing the cleaned data
  */
 
-export default function deleteGreater(data) {
+export default function deleteGreaterY(data) {
   if (data.x.length !== data.y.length) {
     throw new Error("deleteGreater: length of x and y don't match");
   }

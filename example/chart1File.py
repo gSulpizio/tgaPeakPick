@@ -3,7 +3,7 @@ import json
 import matplotlib.pyplot as plt
 print(
     'input file names without extentions. File has to be .json with two arrays x and y in an object: {{x:[1,2,3],y:[4,5,6]}}\n')
-file1 = input('name file 1:\n')
+file1 = input('name file 1:\n') or 'data1'
 
 
 with open('/home/giustinosulpizio/git/Cheminfo/tgaPeakPick/example/'+file1+'.json', 'r') as myfile:

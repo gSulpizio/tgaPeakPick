@@ -13,8 +13,6 @@ describe('test mainFunction', () => {
     const data = parser(content);
     let result = mainFunction(data);
 
-    console.log(result); //showing results
-
     let peakList = { x: [], y: [] };
     for (let i = 0; i < result.length; i++) {
       peakList.x.push(result[i].left.x);
