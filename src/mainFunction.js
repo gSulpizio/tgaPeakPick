@@ -18,7 +18,8 @@ export default function mainFunction(data, radius = 601) {
   let filteredData = dataFilter(data);
 
   let processedData = deleteGreaterY(filteredData);
-  //processedData = xyUniqueX(filteredData, { isSorted: false });
+  processedData = deleteSmallerX(processedData);
+  processedData = xyUniqueX(filteredData, { isSorted: false });
 
   writeFileSync(
     join(__dirname, '../example/data1.json'),
