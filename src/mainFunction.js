@@ -3,6 +3,7 @@ import { join } from 'path';
 import { readFileSync, writeFileSync, appendFileSync, unlinkSync } from 'fs';
 import parser from './parser';
 import { xyUniqueX } from 'ml-spectra-processing';
+import { rollingBall } from 'ml-rolling-ball-baseline';
 import dataFilter from './dataFilter';
 import SG from 'ml-savitzky-golay-generalized';
 import deleteGreaterY from './deleteGreaterY';
@@ -22,7 +23,7 @@ export default function mainFunction(data, radius = 601) {
   processedData = xyUniqueX(filteredData, { isSorted: false });
 
   writeFileSync(
-    join(__dirname, '../example/data1.json'),
+    join(__dirname, '../example/data.json'),
     JSON.stringify(processedData),
     'utf8',
   );

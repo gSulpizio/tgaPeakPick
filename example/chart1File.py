@@ -1,12 +1,15 @@
 # this script is just to make a chart
 import json
+import os
 import matplotlib.pyplot as plt
 print(
     'input file names without extentions. File has to be .json with two arrays x and y in an object: {{x:[1,2,3],y:[4,5,6]}}\n')
-file1 = input('name file 1:\n') or 'data1'
+file1 = input('name file 1:\n') or 'data'
+dirname = os.path.dirname(__file__)
+filename = file1 + '.json'
+path = os.path.join(dirname, filename)
 
-
-with open('/home/giustinosulpizio/git/Cheminfo/tgaPeakPick/example/'+file1+'.json', 'r') as myfile:
+with open(path) as myfile:
     data = myfile.read()
 data1 = json.loads(data)
 

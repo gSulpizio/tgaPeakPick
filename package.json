@@ -60,6 +60,7 @@
     "babel-preset-env": "^1.7.0",
     "ml-gsd": "^6.2.0",
     "ml-peak-shape-generator": "^0.10.2",
+    "ml-rolling-ball-baseline": "^0.1.0",
     "ml-savitzky-golay-generalized": "^2.0.3",
     "ml-spectra-processing": "^4.10.0",
     "moving-averages": "^4.0.5",
