@@ -1,42 +1,46 @@
 import peakFinder from './peakFinder';
 import { join } from 'path';
 import { readFileSync, writeFileSync, appendFileSync, unlinkSync } from 'fs';
-import parser from './parser';
-import { xyUniqueX } from 'ml-spectra-processing';
+import { xPadding, xyUniqueX } from 'ml-spectra-processing';
 import { rollingBall } from 'ml-rolling-ball-baseline';
 import dataFilter from './dataFilter';
 import SG from 'ml-savitzky-golay-generalized';
 import deleteGreaterY from './deleteGreaterY';
 import deleteSmallerX from './deleteSmallerX';
+//npx jest --watch --rootDir=src                    a utiliser
 
-export default function mainFunction(data, radius = 601) {
-  let radius2 = Math.floor((radius * 4) / 3);
-  if (radius2 % 2 === 0) {
-    radius2 += 1;
-  }
+export default function mainFunction(data, radius = 1) {
+  radius = (radius / 100) * Math.abs(data.x[data.x.length - 1] - data.x[0]);
+  console.log('radius', radius);
 
-  //const data = parser(content);
   let filteredData = dataFilter(data);
 
   let processedData = deleteGreaterY(filteredData);
   processedData = deleteSmallerX(processedData);
   processedData = xyUniqueX(filteredData, { isSorted: false });
+  //processedData.y = Array.from(xPadding(processedData.y));
+
+  let dY = SG(processedData.y, processedData.x, { derivative: 1 });
+  let dYSmooth = Array.from(rollingBall(dY, radius));
+  let toAnalyze = { x: processedData.x, y: dY }; //Smooth.map((x) => -x) };
 
   writeFileSync(
     join(__dirname, '../example/data.json'),
     JSON.stringify(processedData),
     'utf8',
   );
-  let dY = SG(processedData.y, processedData.x, { derivative: 1 });
-  let dYSmooth = SG(dY, processedData.x, { windowSize: radius });
-  let toAnalyze = { x: processedData.x, y: dYSmooth.map((x) => -x) };
+
+  writeFileSync(
+    join(__dirname, '../example/dataDerivative.json'),
+    JSON.stringify(toAnalyze),
+    'utf8',
+  );
 
   let result = peakFinder(toAnalyze, {
-    sgOptions: { windowSize: radius2 },
-    minMaxRatio: 0.01,
-    factorWidth: 4,
+    sgOptions: {},
   });
   getFWHM(data, result, toAnalyze.y);
+  console.log(result);
   return result;
 }
 
