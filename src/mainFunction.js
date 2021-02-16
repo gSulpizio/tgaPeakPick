@@ -22,25 +22,31 @@ export default function mainFunction(data, radius = 1) {
 
   let dY = SG(processedData.y, processedData.x, { derivative: 1 });
   let dYSmooth = Array.from(rollingBall(dY, radius));
-  let toAnalyze = { x: processedData.x, y: dY }; //Smooth.map((x) => -x) };
-
+  let toAnalyze = { x: processedData.x, y: dYSmooth.map((x) => -x) };
+  //write spectrum
   writeFileSync(
     join(__dirname, '../example/data.json'),
     JSON.stringify(processedData),
     'utf8',
   );
-
+  //write derivative
   writeFileSync(
     join(__dirname, '../example/dataDerivative.json'),
     JSON.stringify(toAnalyze),
     'utf8',
   );
+  //write text file
+  let textData;
+  for (let i = 0; i < toAnalyze.x.length; i++) {
+    textData += `${toAnalyze.x[i]}  ${toAnalyze.y[i]}\n`;
+  }
+  console.log(textData);
+  writeFileSync(join(__dirname, '../example/data.txt'), textData, 'utf8');
 
   let result = peakFinder(toAnalyze, {
     sgOptions: {},
   });
   getFWHM(data, result, toAnalyze.y);
-  console.log(result);
   return result;
 }
 
