@@ -9,7 +9,7 @@ import SG from 'ml-savitzky-golay-generalized';
 describe('test peakFinder', () => {
   it('should return 4 peaks', () => {
     const content = readFileSync(
-      join(__dirname, '../../example/testFile.csv'),
+      join(__dirname, '../../example/data/testFile.csv'),
       'utf8',
     );
 

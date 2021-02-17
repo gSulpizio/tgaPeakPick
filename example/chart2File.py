@@ -9,11 +9,11 @@ dirname = os.path.dirname(__file__)
 
 file1 = input('name file 1:\n') or 'data'
 filename1 = file1 + '.json'
-path1 = os.path.join(dirname, filename1)
+path1 = os.path.join(dirname+'/data/', filename1)
 
-file2 = input('name file 1:\n') or 'data'
+file2 = input('name file 2:\n') or 'data'
 filename2 = file2 + '.json'
-path2 = os.path.join(dirname, filename2)
+path2 = os.path.join(dirname+'/data/', filename2)
 
 with open(path1, 'r') as myfile:
     data = myfile.read()

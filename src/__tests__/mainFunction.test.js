@@ -6,7 +6,7 @@ import mainFunction from '../mainFunction';
 describe('test mainFunction', () => {
   it.only('should return 4 peaks from simulated data', () => {
     const content = readFileSync(
-      join(__dirname, '../../example/testFile.csv'),
+      join(__dirname, '../../example/data/testFile.csv'),
       'utf8',
     );
 
@@ -23,7 +23,7 @@ describe('test mainFunction', () => {
     }
 
     writeFileSync(
-      join(__dirname, '../../example/peakList.json'),
+      join(__dirname, '../../example/data/peakList.json'),
       JSON.stringify(peakList),
       'utf8',
     );
