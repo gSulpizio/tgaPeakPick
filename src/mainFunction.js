@@ -9,19 +9,15 @@ import deleteSmallerX from './deleteSmallerX';
 import writeFiles from '../example/writeFiles';
 //npx jest --watch --rootDir=src                    a utiliser
 
-export default function mainFunction(
-  data,
-  radius = 0.1,
-  option = { dataFilterTolerance, edgeFilterOptions },
-) {
+export default function mainFunction(data, radius = 0.1) {
   radius = (radius / 100) * Math.abs(data.x[data.x.length - 1] - data.x[0]);
 
-  let filteredData = dataFilter(data, dataFilterTolerance);
+  let filteredData = dataFilter(data);
 
   let processedData = deleteGreaterY(filteredData);
   processedData = deleteSmallerX(processedData);
   processedData = xyUniqueX(filteredData, { isSorted: false });
-  processedData = edgeFilter(processedData, edgeFilterOptions);
+  processedData = edgeFilter(processedData);
   //processedData.y = Array.from(xPadding(processedData.y));
 
   let dY = SG(processedData.y, processedData.x, { derivative: 1 });
