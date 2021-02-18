@@ -7,6 +7,9 @@ import SG from 'ml-savitzky-golay-generalized';
 import deleteGreaterY from './deleteGreaterY';
 import deleteSmallerX from './deleteSmallerX';
 import writeFiles from '../example/writeFiles';
+
+import baselineCorrection from 'ml-baseline-correction-regression';
+
 //npx jest --watch --rootDir=src                    a utiliser
 
 export default function mainFunction(data, radius = 0.1) {
@@ -21,13 +24,12 @@ export default function mainFunction(data, radius = 0.1) {
   //processedData.y = Array.from(xPadding(processedData.y));
 
   let dY = SG(processedData.y, processedData.x, { derivative: 1 });
-  let dYSmooth = Array.from(rollingBall(dY, radius));
+  let dYSmooth = Array.from(baselineCorrection(processedData.x, dY));
+  console.log(dYSmooth);
   let toAnalyze = { x: processedData.x, y: dYSmooth.map((x) => -x) };
 
-  let result = peakFinder(toAnalyze, {
-    sgOptions: {},
-  });
-
+  //let result = peakFinder(toAnalyze, {sgOptions: {},});
+  let result = 0;
   getFWHM(data, result, toAnalyze.y);
 
   //to write the data in a file in ../example/data:

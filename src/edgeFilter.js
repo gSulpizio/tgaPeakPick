@@ -14,7 +14,6 @@ export default function edgeFilter(
   );
 
   let step;
-  console.log(tolerance);
   if (left) {
     for (let i = startLeft; i > 0; i--) {
       step = Math.abs(data.x[i] - data.x[i - 1]);
