@@ -7,11 +7,11 @@ print(
 
 dirname = os.path.dirname(__file__)
 
-file1 = input('name file 1:\n') or 'data'
+file1 = input('name file 1:\n') or 'dataDerivative'
 filename1 = file1 + '.json'
 path1 = os.path.join(dirname+'/data/', filename1)
 
-file2 = input('name file 2:\n') or 'data'
+file2 = input('name file 2:\n') or 'dataSim'
 filename2 = file2 + '.json'
 path2 = os.path.join(dirname+'/data/', filename2)
 
@@ -26,8 +26,8 @@ data2 = json.loads(data)
 fig, ax1 = plt.subplots()
 
 color = 'tab:red'
-ax1.set_xlabel('temperature')
-ax1.set_ylabel('weight', color=color)
+ax1.set_xlabel('x-array')
+ax1.set_ylabel('dataSet1', color=color)
 ax1.plot(data1['x'], data1['y'], color=color)
 ax1.tick_params(axis='y', labelcolor=color)
 
@@ -35,8 +35,10 @@ ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
 
 color = 'tab:blue'
 # we already handled the x-label with ax1
-ax2.set_ylabel('derivative', color=color)
+ax2.set_ylabel('dataSet2', color=color)
 ax2.plot(data2['x'], data2['y'], color=color)
 ax2.tick_params(axis='y', labelcolor=color)
+
+plt.pause(0.05)
 
 plt.show()

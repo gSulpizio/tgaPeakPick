@@ -1,0 +1,73 @@
+<head>
+  <!-- plot: -->
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- jquery to make it possible to add and remove options: -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- icons add and remove, etc.: -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+</head>
+<body>
+  <h2>HTML Forms</h2>
+  <div class="field_wrapper">
+    <div>
+      <input type="text" name="inputName[]" value="" />
+      <a
+        href="javascript:void(0);"
+        style="color: #0044ff"
+        class="add_button"
+        title="Add field"
+        ><i class="fa fa-plus-square" aria-hidden="true"></i
+      ></a>
+    </div>
+  </div>
+
+  <!-- script adding and removing buttons: -->
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var maxField = 10; //Input fields increment limitation
+      var addButton = $('.add_button'); //Add button selector
+      var wrapper = $('.field_wrapper'); //Input field wrapper
+      var fieldHTML =
+        '<div><input type="text" name="inputName[]" value=""/><a href="javascript:void(0);"style="color: #ff1100" class="remove_button"><i class="fa fa-times" aria-hidden="true"></i></a></div>'; //New input field html
+      var x = 1; //Initial field counter is 1
+
+      //Once add button is clicked
+      $(addButton).click(function () {
+        //Check maximum number of input fields
+        if (x < maxField) {
+          x++; //Increment field counter
+          $(wrapper).append(fieldHTML); //Add field html
+        }
+      });
+
+      //Once remove button is clicked
+      $(wrapper).on('click', '.remove_button', function (e) {
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+      });
+    });
+  </script>
+
+  <div
+    class="service-container"
+    data-service="<?php $field_values_array = $_POST['inputName'];
+
+  print_r($field_values_array); ?>"
+  ></div>
+  <script type="text/javascript">
+    var aaa = document.getElementsByName('inputName');
+    var bbb = $.post('inputName');
+    Promise.all([
+      fetch('https://randomuser.me/api/').then((resp) => resp.json()),
+      fetch('https://randomuser.me/api/').then((resp) => resp.json()),
+      fetch('https://randomuser.me/api/').then((resp) => resp.json()),
+      fetch('https://randomuser.me/api/').then((resp) => resp.json()),
+      fetch('https://randomuser.me/api/').then((resp) => resp.json()),
+    ]).then(console.log);
+  </script>
+</body>

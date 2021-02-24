@@ -1,0 +1,60 @@
+<head>
+  <!-- plot: -->
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- jquery to make it possible to add and remove options: -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- icons add and remove, etc.: -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <div class="container1">
+    <button class="add_form_field">
+      Add New Field &nbsp;
+      <span style="font-size: 16px; font-weight: bold">+ </span>
+    </button>
+    <div><input type="text" name="mytext[]" /></div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      var max_fields = 10;
+      var wrapper = $('.container1');
+      var add_button = $('.add_form_field');
+
+      var x = 1;
+      $(add_button).click(function (e) {
+        e.preventDefault();
+        if (x < max_fields) {
+          x++;
+          $(wrapper).append(
+            '<div><input type="text" name="mytext[]"/><a href="#" class="delete">Delete</a></div>',
+          ); //add input box
+        } else {
+          alert('You Reached the limits');
+        }
+      });
+
+      $(wrapper).on('click', '.delete', function (e) {
+        e.preventDefault();
+        $(this).parent('div').remove();
+        x--;
+      });
+    });
+  </script>
+  <script type="text/javascript">
+    var aaa = document.getElementsByName('inputName');
+    var bbb = $.post('inputName');
+    Promise.all([
+      fetch('https://randomuser.me/api/').then((resp) => resp.json()),
+      fetch('https://randomuser.me/api/').then((resp) => resp.json()),
+      fetch('https://randomuser.me/api/').then((resp) => resp.json()),
+      fetch('https://randomuser.me/api/').then((resp) => resp.json()),
+      fetch('https://randomuser.me/api/').then((resp) => resp.json()),
+    ]).then(console.log);
+  </script>
+</body>

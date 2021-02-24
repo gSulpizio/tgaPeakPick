@@ -12,7 +12,7 @@ import writeFiles from '../example/writeFiles';
 
 export default function mainFunction(
   data,
-  radius = 2,
+  radius = 3,
   options = {
     gsdOptions: {
       sgOptions: { windowSize: 0, polynomial: 3 },
