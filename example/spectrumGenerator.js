@@ -61,19 +61,26 @@ generator.addPeak(
 const spectrum = generator.getSpectrum();
 
 */
+const content = readFileSync(join(__dirname, './data/peakList.json'), 'utf8');
+let peakList = [];
+let parsedContent = JSON.parse(content);
+for (let i = 0; i < parsedContent.length; i++) {
+  peakList.push([
+    parsedContent[i].x,
+    parsedContent[i].y,
+    parsedContent[i].width,
+  ]);
+}
 
-const spectrum = generateSpectrum([
-  [530, 0.03, 120],
-  [140, 0.0025, 90],
-]);
-//console.log('spectrum:', spectrum);
+const spectrum = generateSpectrum(peakList);
+
 let spectrumRendered = {
-  x: [].slice.call(spectrum.x),
-  y: [].slice.call(spectrum.y),
+  x: Array.from(spectrum.x),
+  y: Array.from(spectrum.y),
 };
 
 writeFileSync(
-  join(__dirname, 'dataSim.json'),
+  join(__dirname, './data/dataSim.json'),
   JSON.stringify(spectrumRendered),
   'utf8',
 );

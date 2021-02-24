@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "dev": "nodemon --exec babel-node example/tracingTool.js",
-    "dev1": "nodemon --exec babel-node example/tracingToolDerivative.js",
+    "runTracer": "nodemon --exec babel-node example/spectrumGenerator.js --rootDir=src",
     "eslint": "eslint src",
     "eslint-fix": "npm run eslint -- --fix",
     "prepublishOnly": "rollup -c",

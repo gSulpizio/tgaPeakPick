@@ -7,6 +7,7 @@ import SG from 'ml-savitzky-golay-generalized';
 import deleteGreaterY from './deleteGreaterY';
 import deleteSmallerX from './deleteSmallerX';
 import writeFiles from '../example/writeFiles';
+
 //npx jest --watch --rootDir=src                    a utiliser
 
 export default function mainFunction(
@@ -16,7 +17,7 @@ export default function mainFunction(
     gsdOptions: {
       sgOptions: { windowSize: 0, polynomial: 3 },
       factorWidth: 4,
-      shape: 'Gaussian',
+      shape: { kind: 'Gaussian', options: {} },
     },
   },
 ) {
@@ -50,7 +51,7 @@ export default function mainFunction(
     x: processedData.x,
     y: dY.map((x) => -x),
   });
-
+  console.log(result);
   return result;
 }
 

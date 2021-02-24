@@ -24,7 +24,7 @@ describe('test mainFunction', () => {
 
     writeFileSync(
       join(__dirname, '../../example/data/peakList.json'),
-      JSON.stringify(peakList),
+      JSON.stringify(result),
       'utf8',
     );
   });
